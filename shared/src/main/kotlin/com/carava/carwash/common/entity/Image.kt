@@ -29,7 +29,6 @@ class Image (
     @Column(columnDefinition = "INT DEFAULT 0")
     var displayOrder: Int = 0,
 
-    // 메타데이터
     @Column(length = 255)
     var originalFileName: String? = null,
 
