@@ -10,7 +10,7 @@ import java.time.LocalTime
     uniqueConstraints = [
         UniqueConstraint(
             name = "uk_store_day_of_week",
-            columnNames = ["store_id", "dayOfWeek"]
+            columnNames = ["store_id", "day_of_week"]
         )
     ]
     )
@@ -24,14 +24,16 @@ class OperatingHour (
     var store: Store,
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "day_of_week", nullable = false)
     var dayOfWeek: DayOfWeek,
 
+    @Column(name = "open_time")
     var openTime: LocalTime?,
 
+    @Column(name = "close_time")
     var closeTime: LocalTime?,
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
+    @Column(name = "is_open", nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
     var isOpen: Boolean = true,
 
 ) : BaseEntity()

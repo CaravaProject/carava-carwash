@@ -12,7 +12,7 @@ class Store (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
-    @Column(nullable = false)
+    @Column(name = "owner_member_id", nullable = false)
     var ownerMemberId: Long = 0,
 
     @Column(nullable = false)
@@ -25,7 +25,7 @@ class Store (
     var phone: String?= null,
 
     //TODO: 주소 entity 만들고 연결
-    @Column(nullable = false)
+    @Column(name = "address_id", nullable = false)
     var addressId: Long = 0,
 
     @Enumerated(EnumType.STRING)
@@ -36,16 +36,16 @@ class Store (
     @Column(nullable = false, length = 20)
     var status: StoreStatus = StoreStatus.ACTIVE,
 
-    @Column(precision = 2, scale = 1)
+    @Column(name = "average_rating", precision = 2, scale = 1)
     var averageRating: BigDecimal = BigDecimal("0.0"),
 
-    @Column(columnDefinition = "INT DEFAULT 0")
+    @Column(name = "total_reviews", columnDefinition = "INT DEFAULT 0")
     var totalReviews: Int = 0,
 
-    @Column(columnDefinition = "INT DEFAULT 0")
+    @Column(name = "view_count", columnDefinition = "INT DEFAULT 0")
     var viewCount: Int = 0,
 
-    @Column(columnDefinition = "INT DEFAULT 0")
+    @Column(name = "favorite_count", columnDefinition = "INT DEFAULT 0")
     var favoriteCount: Int = 0,
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
