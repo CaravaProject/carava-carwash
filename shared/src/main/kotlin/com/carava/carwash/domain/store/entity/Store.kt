@@ -48,12 +48,20 @@ class Store (
     @Column(columnDefinition = "INT DEFAULT 0")
     var favoriteCount: Int = 0,
 
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var menus: MutableList<Menu> = mutableListOf(),
+
 ) : BaseEntity() {
 
     fun validateOwnership(requestMemberId: Long) {
         if (this.ownerMemberId != requestMemberId) {
             throw ForbiddenException("해당 가게에 대한 권한이 없습니다.")
         }
+    }
+
+    fun addMenu(menu: Menu) {
+        menus.add(menu)
+        menu.store = this
     }
 
 }
