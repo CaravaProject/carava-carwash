@@ -46,3 +46,6 @@ gradle-wrapper.jar
 # OS
 .DS_Store
 Thumbs.db
+
+# .github
+.github
