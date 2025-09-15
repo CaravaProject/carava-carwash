@@ -1,6 +1,6 @@
 package com.carava.carwash.common.entity
 
-enum class EntityType {
+enum class ImageEntityType {
     STORE,
     MENU,
     REVIEW

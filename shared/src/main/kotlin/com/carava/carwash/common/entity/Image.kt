@@ -11,31 +11,31 @@ class Image (
     var id: Long = 0,
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    var entityType: EntityType,
+    @Column(name = "entity_type", nullable = false)
+    var entityType: ImageEntityType,
 
-    @Column(nullable = false)
+    @Column(name = "entity_id", nullable = false)
     var entityId: Long,
 
-    @Column(nullable = false, length = 500)
+    @Column(name = "image_path", nullable = false, length = 500)
     var imagePath: String,
 
-    @Column(length = 500)
+    @Column(name = "thumbnail_path", length = 500)
     var thumbnailPath: String? = null,
 
-    @Column(length = 500)
+    @Column(name = "medium_path", length = 500)
     var mediumPath: String? = null,
 
-    @Column(columnDefinition = "INT DEFAULT 0")
+    @Column(name = "display_order", columnDefinition = "INT DEFAULT 0")
     var displayOrder: Int = 0,
 
-    @Column(length = 255)
+    @Column(name = "original_file_name", length = 255)
     var originalFileName: String? = null,
 
-    @Column(columnDefinition = "BIGINT DEFAULT 0")
+    @Column(name = "file_size", columnDefinition = "BIGINT DEFAULT 0")
     var fileSize: Long = 0,
 
-    @Column(length = 50)
+    @Column(name = "mime_type", length = 50)
     var mimeType: String? = null
 
 
