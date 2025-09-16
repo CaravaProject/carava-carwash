@@ -1,4 +1,4 @@
-package com.carava.carwash.domain.store.Repository
+package com.carava.carwash.domain.store.repository
 
 import com.carava.carwash.domain.store.entity.Holiday
 import org.springframework.data.jpa.repository.JpaRepository

@@ -1,6 +1,6 @@
 package com.carava.carwash.store.service
 
-import com.carava.carwash.domain.store.Repository.OperatingHourRepository
+import com.carava.carwash.domain.store.repository.OperatingHourRepository
 import com.carava.carwash.domain.store.entity.OperatingHour
 import com.carava.carwash.store.dto.SaveOperatingHourRequestDto
 import com.carava.carwash.store.dto.SaveOperatingHourResponseDto

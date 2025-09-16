@@ -3,7 +3,7 @@ package com.carava.carwash.store.service
 import com.carava.carwash.common.entity.AddressEntityType
 import com.carava.carwash.common.exception.NotFoundException
 import com.carava.carwash.common.repository.AddressRepository
-import com.carava.carwash.domain.store.Repository.StoreRepository
+import com.carava.carwash.domain.store.repository.StoreRepository
 import com.carava.carwash.domain.store.entity.Store
 import com.carava.carwash.store.dto.CreateStoreRequestDto
 import com.carava.carwash.store.dto.CreateStoreResponseDto
