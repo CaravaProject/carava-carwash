@@ -24,10 +24,6 @@ class Store (
     @Column(length = 20)
     var phone: String?= null,
 
-    //TODO: 주소 entity 만들고 연결
-    @Column(name = "address_id", nullable = false)
-    var addressId: Long = 0,
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var category: StoreCategory = StoreCategory.CAR_WASH,
