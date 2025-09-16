@@ -1,6 +1,6 @@
 package com.carava.carwash.store.service
 
-import com.carava.carwash.domain.store.Repository.HolidayRepository
+import com.carava.carwash.domain.store.repository.HolidayRepository
 import com.carava.carwash.domain.store.entity.Holiday
 import com.carava.carwash.store.dto.CreateHolidayRequestDto
 import com.carava.carwash.store.dto.CreateHolidayResponseDto
@@ -23,6 +23,7 @@ class HolidayService (
             Holiday(
                 store = store,
                 date = dto.date,
+                reason = request.reason
             )
         }
 

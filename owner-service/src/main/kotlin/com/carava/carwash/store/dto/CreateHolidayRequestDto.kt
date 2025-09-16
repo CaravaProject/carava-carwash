@@ -1,5 +1,6 @@
 package com.carava.carwash.store.dto
 
 data class CreateHolidayRequestDto(
-    val holidays: List<HolidayDto>
+    val holidays: List<HolidayDto>,
+    val reason: String,
 )

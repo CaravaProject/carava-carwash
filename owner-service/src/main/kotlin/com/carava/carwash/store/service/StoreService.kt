@@ -1,7 +1,9 @@
 package com.carava.carwash.store.service
 
+import com.carava.carwash.common.entity.AddressEntityType
 import com.carava.carwash.common.exception.NotFoundException
-import com.carava.carwash.domain.store.Repository.StoreRepository
+import com.carava.carwash.common.repository.AddressRepository
+import com.carava.carwash.domain.store.repository.StoreRepository
 import com.carava.carwash.domain.store.entity.Store
 import com.carava.carwash.store.dto.CreateStoreRequestDto
 import com.carava.carwash.store.dto.CreateStoreResponseDto
@@ -11,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service("storeService")
 @Transactional(readOnly = true)
 class StoreService(
-    private val storeRepository: StoreRepository
+    private val storeRepository: StoreRepository,
+    private val addressRepository: AddressRepository,
 ) {
 
     @Transactional
@@ -20,9 +23,14 @@ class StoreService(
         val store = Store(
             name = request.name,
             ownerMemberId = ownerMemberId,
+            description = request.description,
+            phone = request.phone,
             category = request.category,
         )
         val savedStore = storeRepository.save(store)
+
+        val address = request.address.toEntity(savedStore.id, AddressEntityType.STORE)
+        val savedAddress = addressRepository.save(address)
 
         return CreateStoreResponseDto(
             storeId = savedStore.id,
