@@ -1,6 +1,5 @@
 package com.carava.carwash.store.service
 
-import com.carava.carwash.common.entity.Address
 import com.carava.carwash.common.entity.AddressEntityType
 import com.carava.carwash.common.exception.NotFoundException
 import com.carava.carwash.common.repository.AddressRepository
