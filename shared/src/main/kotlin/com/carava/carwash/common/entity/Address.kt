@@ -26,25 +26,25 @@ class Address (
     @Column(name = "jibun_address", length = 200)
     var jibunAddress: String,
 
-    @Column(length = 20)
-    var sido: String,
-
-    @Column(length = 30)
-    var sigungu: String,
-
-    @Column(length = 20)
-    var bname: String,
-
-    @Column(name = "building_name", length = 30)
-    var buildingName: String,
-
     @Column(name = "user_selected_type", length = 1)
     var userSelectedType: String,
 
-    @Column(name = "detail_address", length = 100)
-    var detailAddress: String,
+    @Column(length = 20)
+    var sido: String?,
 
-) : BaseEntity(){
+    @Column(length = 30)
+    var sigungu: String?,
+
+    @Column(length = 20)
+    var bname: String?,
+
+    @Column(name = "building_name", length = 30)
+    var buildingName: String?,
+
+    @Column(name = "detail_address", length = 100)
+    var detailAddress: String?,
+
+    ) : BaseEntity(){
 
     val selectedAddress: String
         get() = when(userSelectedType) {
@@ -55,7 +55,7 @@ class Address (
     val fullAddress: String
         get() = buildString {
             append(selectedAddress)
-            if(detailAddress.isNotBlank()) {
+            if(detailAddress.isNullOrEmpty()) {
                 append(" ")
                 append(detailAddress)
             }
