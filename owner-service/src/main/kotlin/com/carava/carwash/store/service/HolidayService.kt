@@ -23,6 +23,7 @@ class HolidayService (
             Holiday(
                 store = store,
                 date = dto.date,
+                reason = request.reason
             )
         }
 
