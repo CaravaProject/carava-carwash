@@ -1,7 +1,7 @@
 package com.carava.carwash.store.dto
 
-import com.carava.carwash.common.entity.Address
-import com.carava.carwash.common.entity.AddressEntityType
+import com.carava.carwash.domain.address.entity.Address
+import com.carava.carwash.domain.address.entity.AddressEntityType
 
 data class AddressDto(
     val zonecode: String,

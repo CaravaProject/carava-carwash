@@ -22,7 +22,7 @@ class Menu (
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
-    var category: MenuCategory?,
+    var category: MenuCategory,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", nullable = false)

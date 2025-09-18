@@ -1,5 +1,6 @@
-package com.carava.carwash.common.entity
+package com.carava.carwash.domain.address.entity
 
+import com.carava.carwash.common.entity.BaseEntity
 import jakarta.persistence.*
 
 @Entity

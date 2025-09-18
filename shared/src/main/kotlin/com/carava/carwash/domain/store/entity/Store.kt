@@ -22,7 +22,7 @@ class Store (
     var description: String? = null,
 
     @Column(length = 20)
-    var phone: String?= null,
+    var phone: String,
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
