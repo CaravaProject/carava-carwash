@@ -8,4 +8,5 @@ data class CreateStoreRequestDto(
     val phone: String,
     val category: StoreCategory,
     val address: AddressDto,
+    val operatingHours: List<OperatingHourDto>,
 )
