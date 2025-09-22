@@ -1,3 +1,6 @@
 package com.carava.carwash.car.dto
 
-data class CarListResponseDto()
+data class CarListResponseDto(
+    val cars: List<CarResponseDto>,
+    val totalCount: Int
+)
