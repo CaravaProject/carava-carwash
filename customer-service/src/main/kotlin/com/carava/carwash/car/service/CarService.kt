@@ -6,6 +6,8 @@ import com.carava.carwash.car.dto.CreateCarRequestDto
 import com.carava.carwash.car.dto.UpdateCarRequestDto
 import com.carava.carwash.car.entity.Car
 import com.carava.carwash.car.repository.CarRepository
+import com.carava.carwash.common.exception.ForbiddenException
+import com.carava.carwash.common.exception.NotFoundException
 import com.carava.carwash.member.repository.MemberRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -23,12 +25,13 @@ class CarService(
      */
     @Transactional
     fun createCar(memberId: Long, request: CreateCarRequestDto): CarResponseDto {
+        // 회원 존재 확인
         val member = memberRepository.findByIdOrNull(memberId) 
-            ?: throw IllegalArgumentException("존재하지 않는 회원입니다.")
+            ?: throw NotFoundException("회원을 찾을 수 없습니다. ID: $memberId")
 
         // 차량번호 중복 확인
         if (carRepository.existsByMemberIdAndLicensePlate(memberId, request.licensePlate)) {
-            throw IllegalArgumentException("이미 등록된 차량번호입니다.")
+            throw IllegalArgumentException("이미 등록된 차량번호입니다: ${request.licensePlate}")
         }
 
         // 차량 수 조회
@@ -75,11 +78,12 @@ class CarService(
      */
     fun getCarById(memberId: Long, carId: Long): CarResponseDto {
         val car = carRepository.findByIdOrNull(carId) 
-            ?: throw IllegalArgumentException("존재하지 않는 차량입니다.")
+            ?: throw NotFoundException("차량을 찾을 수 없습니다. ID: $carId")
 
         if (car.member.id != memberId) {
-            throw IllegalArgumentException("접근 권한이 없습니다.")
+            throw ForbiddenException("해당 차량에 대한 접근 권한이 없습니다.")
         }
+        
         return car.toResponseDto()
     }
 
@@ -89,15 +93,15 @@ class CarService(
     @Transactional
     fun updateCar(memberId: Long, carId: Long, request: UpdateCarRequestDto): CarResponseDto {
         val car = carRepository.findByIdOrNull(carId) 
-            ?: throw IllegalArgumentException("존재하지 않는 차량입니다.")
+            ?: throw NotFoundException("차량을 찾을 수 없습니다. ID: $carId")
 
         if (car.member.id != memberId) {
-            throw IllegalArgumentException("접근 권한이 없습니다.")
+            throw ForbiddenException("해당 차량에 대한 접근 권한이 없습니다.")
         }
 
         // 차량번호 중복 확인 (자기 자신 제외)
         if (carRepository.existsByMemberIdAndLicensePlateAndIdNot(memberId, request.licensePlate, carId)) {
-            throw IllegalArgumentException("이미 등록된 차량번호입니다.")
+            throw IllegalArgumentException("이미 등록된 차량번호입니다: ${request.licensePlate}")
         }
 
         // 기본 차량 설정 처리
@@ -124,10 +128,10 @@ class CarService(
     @Transactional
     fun deleteCar(memberId: Long, carId: Long) {
         val car = carRepository.findByIdOrNull(carId)
-            ?: throw IllegalArgumentException("존재하지 않는 차량입니다.")
+            ?: throw NotFoundException("차량을 찾을 수 없습니다. ID: $carId")
 
         if (car.member.id != memberId) {
-            throw IllegalArgumentException("접근 권한이 없습니다.")
+            throw ForbiddenException("해당 차량에 대한 접근 권한이 없습니다.")
         }
 
         val wasDefault = car.isDefault
@@ -148,10 +152,10 @@ class CarService(
     @Transactional
     fun setDefaultCar(memberId: Long, carId: Long): CarResponseDto {
         val car = carRepository.findByIdOrNull(carId)
-            ?: throw IllegalArgumentException("존재하지 않는 차량입니다.")
+            ?: throw NotFoundException("차량을 찾을 수 없습니다. ID: $carId")
 
         if (car.member.id != memberId) {
-            throw IllegalArgumentException("접근 권한이 없습니다.")
+            throw ForbiddenException("해당 차량에 대한 접근 권한이 없습니다.")
         }
 
         // 기존 기본 차량들을 모두 해제
