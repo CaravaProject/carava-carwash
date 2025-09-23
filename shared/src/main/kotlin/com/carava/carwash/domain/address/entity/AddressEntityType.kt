@@ -1,4 +1,4 @@
-package com.carava.carwash.common.entity
+package com.carava.carwash.domain.address.entity
 
 enum class AddressEntityType {
     STORE,

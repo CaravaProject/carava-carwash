@@ -22,7 +22,7 @@ class Store (
     var description: String? = null,
 
     @Column(length = 20)
-    var phone: String?= null,
+    var phone: String,
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -44,8 +44,11 @@ class Store (
     @Column(name = "favorite_count", columnDefinition = "INT DEFAULT 0")
     var favoriteCount: Int = 0,
 
-    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
     var menus: MutableList<Menu> = mutableListOf(),
+
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
+    var operatingHours: MutableList<OperatingHour> = mutableListOf(),
 
 ) : BaseEntity() {
 

@@ -1,7 +1,14 @@
 package com.carava.carwash.domain.store.entity
 
 enum class MenuCategory {
-    INTERIOR,
-    EXTERIOR
-    // TODO: 메뉴 카테고리가 이런 것 맞나요?
+    COMPACT,        // 소형
+    MID_CP,         // 준중형
+    MID,            // 중형
+    LARGE,          // 대형
+    SUV_MCP,        // SUV 준중형
+    SUV_MD,         // SUV 중형
+    SUV_LG ,        // SUV 준대형
+    SUV_XL,         // SUV 대형
+    VAN,            // 밴
+    LUXURY          // 고급차량
 }
