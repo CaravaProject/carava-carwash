@@ -39,6 +39,11 @@ class GlobalExceptionHandler {
     fun handleEmailAlreadyExistsException(ex: EmailAlreadyExistsException) =
         ApiResponse.error("EMAIL_ALREADY_EXISTS")
 
+    @ExceptionHandler(ConflictException::class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    fun handleConflictException(ex: ConflictException) =
+        ApiResponse.error("CONFLICT")
+
     // ==== 리소스 ====
     @ExceptionHandler(NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

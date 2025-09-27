@@ -6,6 +6,7 @@ import com.carava.carwash.car.dto.CreateCarRequestDto
 import com.carava.carwash.car.dto.UpdateCarRequestDto
 import com.carava.carwash.car.entity.Car
 import com.carava.carwash.car.repository.CarRepository
+import com.carava.carwash.common.exception.ConflictException
 import com.carava.carwash.common.exception.ForbiddenException
 import com.carava.carwash.common.exception.NotFoundException
 import com.carava.carwash.member.repository.MemberRepository
@@ -31,7 +32,7 @@ class CarService(
 
         // 차량번호 중복 확인
         if (carRepository.existsByMemberIdAndLicensePlate(memberId, request.licensePlate)) {
-            throw IllegalArgumentException("이미 등록된 차량번호입니다: ${request.licensePlate}")
+            throw ConflictException("이미 등록된 차량번호입니다: ${request.licensePlate}")
         }
 
         // 차량 수 조회
@@ -101,7 +102,7 @@ class CarService(
 
         // 차량번호 중복 확인 (자기 자신 제외)
         if (carRepository.existsByMemberIdAndLicensePlateAndIdNot(memberId, request.licensePlate, carId)) {
-            throw IllegalArgumentException("이미 등록된 차량번호입니다: ${request.licensePlate}")
+            throw ConflictException("이미 등록된 차량번호입니다: ${request.licensePlate}")
         }
 
         // 기본 차량 설정 처리
