@@ -22,3 +22,8 @@ logging:
     com.carava.carwash: DEBUG
     org.springframework.web: DEBUG
     org.springframework.security: DEBUG
+
+# FCM 설정
+fcm:
+  enabled: true
+  credentials-path: carvana-firebase-service-account.json

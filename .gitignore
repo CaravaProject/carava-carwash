@@ -49,3 +49,6 @@ Thumbs.db
 
 # .github
 .github
+
+# FCM Service Account Keys
+**/**-firebase-service-account.json

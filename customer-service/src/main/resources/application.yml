@@ -13,3 +13,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# FCM 설정
+fcm:
+  enabled: true
+  credentials-path: carvana-firebase-service-account.json
