@@ -17,7 +17,7 @@ interface HolidayRepository : JpaRepository<Holiday, Long> {
         SELECT CASE WHEN COUNT(h) > 0 THEN true ELSE false END
         FROM Holiday h
         WHERE h.store.id = :storeId
-        AND :date BETWEEN h.startDate AND h.endDate
+        AND h.date = :date
     """)
     fun existsByStoreIdAndDate(
         @Param("storeId") storeId: Long,
@@ -30,9 +30,8 @@ interface HolidayRepository : JpaRepository<Holiday, Long> {
     @Query("""
         SELECT h FROM Holiday h
         WHERE h.store.id = :storeId
-        AND h.endDate >= :startDate
-        AND h.startDate <= :endDate
-        ORDER BY h.startDate ASC
+        AND h.date BETWEEN :startDate AND :endDate
+        ORDER BY h.date ASC
     """)
     fun findByStoreIdAndDateRange(
         @Param("storeId") storeId: Long,
