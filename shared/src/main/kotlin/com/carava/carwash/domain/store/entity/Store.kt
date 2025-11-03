@@ -44,6 +44,13 @@ class Store (
     @Column(name = "favorite_count", columnDefinition = "INT DEFAULT 0")
     var favoriteCount: Int = 0,
 
+    // 베이 수와 같음 (해당 시간의 최대 예약 수)
+    @Column(name = "hourly_capacity", nullable = false, columnDefinition = "INT DEFAULT 2")
+    var hourlyCapacity: Int = 2,
+
+    @Column(name = "slot_duration", nullable = false, columnDefinition = "INT DEFAULT 30")
+    var slotDuration: Int = 30,
+
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var menus: MutableList<Menu> = mutableListOf(),
 
@@ -58,6 +65,15 @@ class Store (
     fun addMenu(menu: Menu) {
         menus.add(menu)
         menu.store = this
+    }
+
+    // 예약 수락을 더 할 수 있는지
+    fun canAcceptMoreReservations(currentReservationCount: Int): Boolean {
+        return currentReservationCount < hourlyCapacity
+    }
+
+    fun getAvailableCapacity(currentReservationCount: Int): Int {
+        return (hourlyCapacity - currentReservationCount).coerceAtLeast(0)
     }
 
 }

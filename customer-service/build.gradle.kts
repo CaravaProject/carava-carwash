@@ -24,6 +24,8 @@ dependencies {
 
     // Test
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("io.mockk:mockk:1.13.8")
+    testImplementation("org.assertj:assertj-core:3.24.2")
 }
 
 allOpen {

@@ -52,3 +52,6 @@ Thumbs.db
 
 # FCM Service Account Keys
 **/**-firebase-service-account.json
+
+# AI Management Files
+.ai/*
