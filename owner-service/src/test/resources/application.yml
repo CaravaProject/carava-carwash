@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: carava-carwash-owner-test
+  
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    defer-datasource-initialization: true
+  
+  h2:
+    console:
+      enabled: true
+  
+  jackson:
+    time-zone: Asia/Seoul
+    date-format: yyyy-MM-dd HH:mm:ss
+
+# JWT 설정 (테스트용)
+jwt:
+  secret: "test-jwt-secret-key-for-authentication-and-authorization-process-must-be-256-bits-long-for-security"
+  access-token-expire-time: 3600000
+  refresh-token-expire-time: 604800000
+
+# FCM 설정 (테스트 시 비활성화)
+fcm:
+  enabled: false
+  credentials-path: ""
+
+logging:
+  level:
+    com.carava.carwash: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
