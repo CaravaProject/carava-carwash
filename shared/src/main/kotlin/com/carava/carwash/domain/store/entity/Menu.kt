@@ -21,8 +21,12 @@ class Menu (
     var name: String,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "category")
-    var category: MenuCategory?,
+    @Column(name = "car_type")
+    var carType: CarType,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "menu_type")
+    var menuType: MenuType,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", nullable = false)

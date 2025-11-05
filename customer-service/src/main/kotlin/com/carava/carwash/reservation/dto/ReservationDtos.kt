@@ -131,7 +131,8 @@ data class ReservationMenuResponse(
     val quantity: Int,
     val totalPrice: BigDecimal,
     val duration: Int,
-    val categoryName: String?
+    val carType: String,
+    val menuType: String,
 ) {
     companion object {
         fun from(reservationMenu: ReservationMenu): ReservationMenuResponse {
@@ -144,7 +145,8 @@ data class ReservationMenuResponse(
                 quantity = reservationMenu.quantity,
                 totalPrice = reservationMenu.totalPrice,
                 duration = reservationMenu.duration,
-                categoryName = reservationMenu.categoryName
+                carType = reservationMenu.carType,
+                menuType = reservationMenu.menuType,
             )
         }
     }
