@@ -24,7 +24,8 @@ class MenuService(
         val menu = Menu(
             store = store,
             name = request.name,
-            category = request.category,
+            carType = request.carType,
+            menuType = request.menuType,
             price = request.price,
             description = request.description,
             duration = request.duration,

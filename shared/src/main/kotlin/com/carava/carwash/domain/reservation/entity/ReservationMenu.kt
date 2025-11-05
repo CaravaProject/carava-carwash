@@ -35,7 +35,9 @@ class ReservationMenu(
     @Column(nullable = false)
     val duration: Int,  // 분 단위
 
-    val categoryName: String? = null
+    val menuType: String,
+
+    val carType: String
 ) {
     companion object {
         // Menu로부터 ReservationMenu 생성
@@ -48,7 +50,8 @@ class ReservationMenu(
                 quantity = quantity,
                 totalPrice = menu.price.multiply(BigDecimal(quantity)),
                 duration = menu.duration * quantity,
-                categoryName = menu.category?.name
+                menuType = menu.menuType.toString(),
+                carType = menu.carType.toString(),
             )
         }
     }

@@ -18,3 +18,8 @@ spring:
 fcm:
   enabled: true
   credentials-path: carvana-firebase-service-account.json
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG
