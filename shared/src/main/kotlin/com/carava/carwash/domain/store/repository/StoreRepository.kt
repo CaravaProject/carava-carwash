@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository("storeRepository")
-interface StoreRepository : JpaRepository<Store, Long> {
+interface StoreRepository : JpaRepository<Store, Long>, StoreRepositoryCustom {
     override fun findById(id: Long): Optional<Store>
 
     @Query("SELECT s FROM store s LEFT JOIN FETCH s.menus WHERE s.id = :storeId")

@@ -22,10 +22,10 @@ class Address (
     var zonecode: String,
 
     @Column(name = "road_address", length = 200)
-    var roadAddress: String,
+    var roadAddress: String?,
 
     @Column(name = "jibun_address", length = 200)
-    var jibunAddress: String,
+    var jibunAddress: String?,
 
     @Column(name = "user_selected_type", length = 1)
     var userSelectedType: String,
@@ -54,11 +54,8 @@ class Address (
         }
 
     val fullAddress: String
-        get() = buildString {
-            append(selectedAddress)
-            if(detailAddress.isNullOrEmpty()) {
-                append(" ")
-                append(detailAddress)
-            }
+        get() = when {
+            detailAddress.isNullOrBlank() -> selectedAddress
+            else -> "$selectedAddress $detailAddress"
         }
 }

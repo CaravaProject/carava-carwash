@@ -1,6 +1,6 @@
 package com.carava.carwash.domain.store.entity
 
-enum class MenuCategory {
+enum class CarType {
     COMPACT,        // 소형
     MID_CP,         // 준중형
     MID,            // 중형
